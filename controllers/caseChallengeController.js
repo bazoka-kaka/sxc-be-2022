@@ -44,9 +44,30 @@ const updateTeam = async (req, res) => {
       .json({ message: `No team matches ID ${req.body.id}.` });
   }
   if (req.body?.team) team.team = req.body.team;
-  if (req.body?.leader) team.leader = req.body.leader;
-  if (req.body?.member1) team.member1 = req.body.member1;
-  if (req.body?.member2) team.member2 = req.body.member2;
+  if (req.body?.leader) {
+    if (req.body.leader?.name) team.leader.name = req.body.leader?.name;
+    if (req.body.leader?.email) team.leader.email = req.body.leader?.email;
+    if (req.body.leader?.phone) team.leader.phone = req.body.leader?.phone;
+    if (req.body.leader?.university)
+      team.leader.university = req.body.leader?.university;
+    if (req.body.leader?.batch) team.leader.batch = req.body.leader?.batch;
+  }
+  if (req.body?.member1) {
+    if (req.body.member1?.name) team.member1.name = req.body.member1?.name;
+    if (req.body.member1?.email) team.member1.email = req.body.member1?.email;
+    if (req.body.member1?.phone) team.member1.phone = req.body.member1?.phone;
+    if (req.body.member1?.university)
+      team.member1.university = req.body.member1?.university;
+    if (req.body.member1?.batch) team.member1.batch = req.body.member1?.batch;
+  }
+  if (req.body?.member2) {
+    if (req.body.member2?.name) team.member2.name = req.body.member2?.name;
+    if (req.body.member2?.email) team.member2.email = req.body.member2?.email;
+    if (req.body.member2?.phone) team.member2.phone = req.body.member2?.phone;
+    if (req.body.member2?.university)
+      team.member2.university = req.body.member2?.university;
+    if (req.body.member2?.batch) team.member2.batch = req.body.member2?.batch;
+  }
   const result = await team.save();
   res.json(result);
 };
