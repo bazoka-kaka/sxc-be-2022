@@ -2,10 +2,11 @@ const User = require("../model/User");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
-  const { user, pwd, email, phone, university, batch } = req.body;
-  if (!user || !pwd || !email || !phone || !university || !batch)
+  const { user, pwd, email, phone, university, batch, name } = req.body;
+  if (!user || !pwd || !name || !email || !phone || !university || !batch)
     return res.status(400).json({
-      message: "Please insert user, pwd, email, phone, university, and batch.",
+      message:
+        "Please insert user, pwd, name, email, phone, university, and batch.",
     });
 
   // check for duplicate usernames in the db
@@ -20,6 +21,7 @@ const handleNewUser = async (req, res) => {
     const result = await User.create({
       username: user,
       password: hashedPwd,
+      name: name,
       email: email,
       phone: phone,
       university: university,
