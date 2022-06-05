@@ -14,6 +14,7 @@ const handleRefreshToken = async (req, res) => {
       return res.sendStatus(403);
     const roles = Object.values(foundUser.roles);
     const user = foundUser.username;
+    const user_id = foundUser.id;
     const accessToken = jwt.sign(
       {
         UserInfo: {
@@ -24,7 +25,7 @@ const handleRefreshToken = async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "30s" }
     );
-    res.json({ roles, accessToken, user });
+    res.json({ roles, accessToken, user, user_id });
   });
 };
 
