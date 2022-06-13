@@ -11,10 +11,12 @@ const createNewTeam = async (req, res) => {
     !req?.body?.team ||
     !req?.body?.leader ||
     !req?.body?.member1 ||
-    !req?.body?.member2
+    !req?.body?.member2 ||
+    !req?.body?.buktiBayar
   ) {
     return res.status(400).json({
-      message: "Team name, leader data, and members data are required!",
+      message:
+        "Team name, leader data, bukti bayar, and members data are required!",
     });
   }
 
@@ -24,6 +26,7 @@ const createNewTeam = async (req, res) => {
       leader: req.body.leader,
       member1: req.body.member1,
       member2: req.body.member2,
+      buktiBayar: req.body.buktiBayar,
     });
 
     res.status(201).json(result);
@@ -68,6 +71,7 @@ const updateTeam = async (req, res) => {
       team.member2.university = req.body.member2?.university;
     if (req.body.member2?.batch) team.member2.batch = req.body.member2?.batch;
   }
+  if (req.body?.buktiBayar) team.buktiBayar = req.body.buktiBayar;
   const result = await team.save();
   res.json(result);
 };

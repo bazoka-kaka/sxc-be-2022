@@ -72,6 +72,10 @@ const caseChallengeSchema = new Schema({
       required: true,
     },
   },
+  buktiBayar: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("CaseChallenge", caseChallengeSchema);
