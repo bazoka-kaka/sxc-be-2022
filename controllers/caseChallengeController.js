@@ -11,7 +11,6 @@ const createNewTeam = async (req, res) => {
     !req?.body?.team ||
     !req?.body?.leader ||
     !req?.body?.member1 ||
-    !req?.body?.member2 ||
     !req?.body?.buktiBayar
   ) {
     return res.status(400).json({
@@ -25,7 +24,7 @@ const createNewTeam = async (req, res) => {
       team: req.body.team,
       leader: req.body.leader,
       member1: req.body.member1,
-      member2: req.body.member2,
+      member2: req.body?.member2,
       buktiBayar: req.body.buktiBayar,
     });
 

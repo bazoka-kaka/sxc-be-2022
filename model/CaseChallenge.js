@@ -51,25 +51,21 @@ const caseChallengeSchema = new Schema({
     },
   },
   member2: {
+    required: false,
     name: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
-      required: true,
     },
     phone: {
       type: String,
-      required: true,
     },
     university: {
       type: String,
-      required: true,
     },
     batch: {
       type: Number,
-      required: true,
     },
   },
   buktiBayar: {
