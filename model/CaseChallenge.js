@@ -76,6 +76,11 @@ const caseChallengeSchema = new Schema({
     type: String,
     required: true,
   },
+  bayarApproved: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("CaseChallenge", caseChallengeSchema);
