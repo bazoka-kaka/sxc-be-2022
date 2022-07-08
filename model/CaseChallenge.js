@@ -6,6 +6,10 @@ const caseChallengeSchema = new Schema({
     type: String,
     required: true,
   },
+  registererId: {
+    type: String,
+    required: true,
+  },
   leader: {
     name: {
       type: String,

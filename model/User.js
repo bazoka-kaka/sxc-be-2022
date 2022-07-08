@@ -38,6 +38,7 @@ const userSchema = new Schema({
     type: Number,
     required: true,
   },
+  caseChallengeId: String,
   refreshToken: String,
 });
 

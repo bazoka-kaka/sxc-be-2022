@@ -11,11 +11,12 @@ const createNewTeam = async (req, res) => {
     !req?.body?.team ||
     !req?.body?.leader ||
     !req?.body?.member1 ||
-    !req?.body?.buktiBayar
+    !req?.body?.buktiBayar ||
+    !req?.body?.registererId
   ) {
     return res.status(400).json({
       message:
-        "Team name, leader data, bukti bayar, and members data are required!",
+        "Team name, leader data, bukti bayar, registererId and members data are required!",
     });
   }
 
@@ -25,6 +26,7 @@ const createNewTeam = async (req, res) => {
       leader: req.body.leader,
       member1: req.body.member1,
       member2: req.body?.member2,
+      registererId: req.body.registererId,
       buktiBayar: req.body.buktiBayar,
     });
 
@@ -46,6 +48,7 @@ const updateTeam = async (req, res) => {
       .json({ message: `No team matches ID ${req.body.id}.` });
   }
   if (req.body?.team) team.team = req.body.team;
+  if (req.body?.registererId) team.registererId = req.body.registererId;
   if (req.body?.leader) {
     if (req.body.leader?.name) team.leader.name = req.body.leader?.name;
     if (req.body.leader?.email) team.leader.email = req.body.leader?.email;
@@ -91,9 +94,11 @@ const deleteTeam = async (req, res) => {
 
 const getTeam = async (req, res) => {
   if (!req?.params?.id)
-    return res.status(400).json({ message: "Team ID required." });
+    return res.status(400).json({ message: "Registerer ID required." });
 
-  const team = await CaseChallenge.findOne({ _id: req.params.id }).exec();
+  const team = await CaseChallenge.findOne({
+    registererId: req.params.id,
+  }).exec();
   if (!team) {
     return res
       .status(204)
