@@ -60,7 +60,8 @@ const updateTeam = async (req, res) => {
   }
   if (req.body?.team) team.team = req.body.team;
   if (req.body?.registererId) team.registererId = req.body.registererId;
-  if (req.body?.bayarApproved) team.bayarApproved = req.body.bayarApproved;
+  if (req.body?.bayarApproved !== undefined)
+    team.bayarApproved = parseInt(req.body.bayarApproved);
   if (req.body?.leader) {
     if (req.body.leader?.name) team.leader.name = req.body.leader?.name;
     if (req.body.leader?.email) team.leader.email = req.body.leader?.email;
